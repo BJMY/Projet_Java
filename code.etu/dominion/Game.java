@@ -48,7 +48,12 @@ public class Game {
 	 * - 8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province 	 * - 10 * (n-1) Curse où n est le nombre de joueurs dans la partie
 	 */
 	public Game(String[] playerNames, List<CardList> kingdomStacks) {
+		
 		scanner = new Scanner (System.in);
+		this.players = playerNames;
+		this.supplyStacks = kingdomStacks;
+		this.trashedCards = new CardList();
+		this.currentPlayerIndex = 0;
 	}
 	
 	/**
@@ -59,12 +64,14 @@ public class Game {
 	 * @param index indice dans le tableau des joueurs du joueur à renvoyer
 	 */
 	public Player getPlayer(int index) {
+		return this.players[index];
 	}
 	
 	/**
 	 * Renvoie le nombre de joueurs participant à la partie
 	 */
 	public int numberOfPlayers() {
+		return this.players.length;
 	}
 	
 	/**
@@ -72,6 +79,13 @@ public class Game {
 	 * joueurs, ou -1 si le joueur n'est pas dans le tableau.
 	 */
 	private int indexOfPlayer(Player p) {
+		Player c;
+		for (int i = 0; i<Game.numberOfPlayers; i++) {
+			if(this.players[i] = c) {
+				return i;
+			}
+			return -1;
+		}
 	}
 	
 	/**
