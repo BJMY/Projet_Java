@@ -11,13 +11,13 @@ public abstract class TreasureCard extends Card {
 		public List<CardType> getTypes() {
 		
 			List<CardType> list=super.getTypes();
-			list.add(TreasureCard);
+			list.add(Treasure);
 			return list;
 	}
 	
 	public String toString() {
 		
-		return "Nom de la carte: " + super.name + "/n Types de la carte: Treasure Card" ;
+		return "Nom de la carte: " + super.getName() + "/n Types de la carte: Treasure Card" ;
 		
 	}
 	
