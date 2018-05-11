@@ -48,10 +48,37 @@ public class Game {
 	 * - 8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province 	 * - 10 * (n-1) Curse où n est le nombre de joueurs dans la partie
 	 */
 	public Game(String[] playerNames, List<CardList> kingdomStacks) {
-		
-		scanner = new Scanner (System.in);
-		this.players = playerNames;
-		this.supplyStacks = kingdomStacks;
+		Copper cartecopper = new Copper();
+		CardList listeCopper = new CardList();
+		for (int i = 0; i<60; i++) {
+			listeCopper.add(cartecopper);
+		}
+		for (int i = 0; i<60; i++) {
+			this.supplyStacks.add(i,listeCopper);
+		}
+		Silver cartesilver = new Silver();
+		CardList listeSilver = new CardList();
+		for (int i = 0; i<40; i++) {
+			listeSilver.add(cartesilver);
+		}
+		for (int i = 0; i<40; i++) {
+			this.supplyStacks.add(i,listeSilver);
+		}
+		Gold cartegold = new Gold();
+		CardList listeGold = new CardList();
+		for (int i = 0; i<30; i++) {
+			listeGold.add(cartegold);
+		}
+		for (int i = 0; i<30; i++) {
+			this.supplyStacks.add(i,listeGold);
+		}
+		this.scanner = new Scanner (System.in);
+		for (int i = 0; i<playerNames.length; i++) {			
+			this.players[i] = new Player (playerNames[i], this);
+		}
+		for (int i = 0; i<kingdomStacks.size(); i++) {
+			this.supplyStacks.add(kingdomStacks.get(i));
+		}
 		this.trashedCards = new CardList();
 		this.currentPlayerIndex = 0;
 	}
@@ -79,13 +106,12 @@ public class Game {
 	 * joueurs, ou -1 si le joueur n'est pas dans le tableau.
 	 */
 	private int indexOfPlayer(Player p) {
-		Player c;
-		for (int i = 0; i<Game.numberOfPlayers; i++) {
-			if(this.players[i] = c) {
+		for (int i = 0; i<this.players.length; i++) {
+			if(this.players[i].getName().equals(p.getName())) {
 				return i;
 			}
-			return -1;
 		}
+		return -1;
 	}
 	
 	/**
@@ -101,6 +127,15 @@ public class Game {
 	 * premier).
 	 */
 	public List<Player> otherPlayers(Player p) {
+		ArrayList<Player> classplayer = new ArrayList<Player>();
+		int j = this.indexOfPlayer(p);
+		for (int i = j; i<this.players.length; i++) {
+			classplayer.add(this.players[i]);
+		}
+		for (int k = 0; k<j; k++) {
+			classplayer.add(this.players[k]);
+		}
+		return classplayer;
 	}
 	
 	/**
