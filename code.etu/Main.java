@@ -3,7 +3,7 @@ import dominion.*;
 import dominion.card.*;
 import dominion.card.base.*;
 
-/**TEST*/
+/**TEST2*/
 /**
  * Classe pour l'exécution d'une partie de Dominion
  */
