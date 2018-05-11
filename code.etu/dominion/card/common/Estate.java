@@ -13,4 +13,8 @@ public class Estate extends VictoryCard {
 	public int victoryValue(Player p) {
 		return 1;
 	}
+	
+	public void play(Player p){
+		
+	}
 }

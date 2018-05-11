@@ -65,24 +65,40 @@ public class Player {
 	 * préparer la main du joueur après avoir placé les cartes dans la défausse.
 	 */
 	public Player(String name, Game game) {
+		
+		this.name=name;
+		this.game=game;
 	}
 
 	/**
 	 * Getters et setters
 	 */
 	public String getName() {
+		
+		return this.name;
+		
 	}
 	
 	public int getActions() {
+		
+		return this.actions;
 	}
 	
 	public int getMoney() {
+		
+		return this.money;
 	}
 	
 	public int getBuys() {
+		
+		return this.buys;
+		
 	}
 	
 	public Game getGame() {
+		
+		return this.game;
+		
 	}
 	
 	/**
@@ -92,6 +108,9 @@ public class Player {
 	 * souhaite diminuer le nombre d'actions)
 	 */
 	public void incrementActions(int n) {
+		
+		this.actions+=n;
+		
 	}
 	
 	/**
@@ -101,6 +120,8 @@ public class Player {
 	 * souhaite diminuer le nombre de pièces)
 	 */
 	public void incrementMoney(int n) {
+		
+		this.money+=n;
 	}
 	
 	/**
@@ -110,6 +131,10 @@ public class Player {
 	 * souhaite diminuer le nombre d'achats)
 	 */
 	public void incrementBuys(int n) {
+		
+		
+		this.buys+=n;
+		
 	}
 
 	/**
@@ -118,6 +143,16 @@ public class Player {
 	 * éléments sont les mêmes que ceux de {@code this.hand}.
 	 */
 	public CardList cardsInHand() {
+		
+		return this.hand;
+	}
+	
+	
+	/** FONCTION AJOUTEE permet d'ajouter une carte dans la main du joueur*/
+	public void addInHand(Card c){
+		
+		this.hand.add(c);
+	
 	}
 	
 	/**
@@ -126,6 +161,34 @@ public class Player {
 	 * défausse, la pioche et en jeu)
 	 */
 	public CardList totalCards() {
+		
+		CardList l=new CardList();
+		
+	    for (Card c: this.hand) {
+			
+			l.add(c);
+			
+		}
+		
+		    for (Card c: this.discard) {
+			
+			l.add(c);
+			
+		}
+		
+		    for (Card c: this.draw) {
+			
+			l.add(c);
+			
+		}
+		
+		    for (Card c: this.inPlay) {
+			
+			l.add(c);
+			
+		}
+		
+		return l;
 	}
 	
 	/**
@@ -136,6 +199,38 @@ public class Player {
 	 * {@code victoryValue()}) des cartes
 	 */
 	public int victoryPoints() {
+		
+		int count=0; //Compteur de points//
+		
+		  for (Card c: this.hand) {
+			
+			count+=c.victoryValue(this);
+			
+		}
+		
+		    for (Card c: this.discard) {
+			
+			count+=c.victoryValue(this);
+			
+			
+		}
+		
+		    for (Card c: this.draw) {
+			
+			count+=c.victoryValue(this);
+			
+			
+		}
+		
+		    for (Card c: this.inPlay) {
+			
+			count+=c.victoryValue(this);
+			
+			
+		}
+		
+		return count;
+		
 	}
 	
 	/**
@@ -150,7 +245,11 @@ public class Player {
 	 * de la classe {@code Game}.
 	 */
 	public List<Player> otherPlayers() {
+		
+		return this.game.otherPlayers(this);
+		
 	}
+	
 	
 	/**
 	 * Pioche une carte dans la pioche du joueur.
@@ -163,6 +262,29 @@ public class Player {
 	 * @return la carte piochée, {@code null} si aucune carte disponible
 	 */
 	public Card drawCard() {
+		
+		if (this.draw.size()==0 && this.discard.size()==0){
+			return null;
+		}
+		
+		
+		
+		if (this.draw.size()==0){
+			
+			this.discard.shuffle();
+
+			
+			for(Card c: this.discard){
+				
+				this.draw.add(c);
+				
+			}
+			
+		}
+		
+		return draw.remove(0);
+		
+		
 	}
 	
 	/**
@@ -188,18 +310,65 @@ public class Player {
 	 * Renvoie la liste de toutes les cartes Trésor dans la main du joueur
 	 */
 	public CardList getTreasureCards() {
+		
+		CardList list = new CardList();
+		
+		for(Card c: this.hand){
+			
+			if(c.getTypes().contains(CardType.Treasure)){
+				
+				list.add(c);
+				
+			}
+			
+		}
+		
+		return list;
+		
 	}
 	
 	/**
 	 * Renvoie la liste de toutes les cartes Action dans la main du joueur
 	 */
 	public CardList getActionCards() {
+		
+			CardList list = new CardList();
+		
+		for(Card c: this.hand){
+			
+			if(c.getTypes().contains(CardType.Action)){
+				
+				list.add(c);
+				
+			}
+			
+		}
+		
+		return list;
+		
+		
 	}
 	
 	/**
 	 * Renvoie la liste de toutes les cartes Victoire dans la main du joueur
 	 */
 	public CardList getVictoryCards() {
+		
+		CardList list = new CardList();
+		
+		for(Card c: this.hand){
+			
+			if(c.getTypes().contains(CardType.Victory)){
+				
+				list.add(c);
+				
+			}
+			
+		}
+		
+		return list;
+		
+		
 	}
 	
 	/**
@@ -213,6 +382,11 @@ public class Player {
 	 * {@code inPlay} et exécute la méthode {@code play(Player p)} de la carte.
 	 */
 	public void playCard(Card c) {
+		
+	
+		this.inPlay.add(this.hand.remove(c.getName()));
+		c.play(this);
+		
 	}
 	
 	/**
@@ -226,6 +400,26 @@ public class Player {
 	 * fait rien.
 	 */
 	public void playCard(String cardName) {
+		
+		if(this.hand.contains(cardName)){
+			
+
+			
+			for(Card c: this.hand){
+				
+				if(c.getName()==cardName){
+					c.play(this);
+					this.hand.remove(cardName);
+					this.inPlay.add(c);
+					
+					
+				}	
+			}
+		
+		
+		}
+		
+		
 	}
 	
 	/**
@@ -238,6 +432,14 @@ public class Player {
 	 * emplacement précédent au préalable.
 	 */
 	public void gain(Card c) {
+		
+		if(c!=null){
+			
+			
+		this.discard.add(c);
+		
+		}
+		
 	}
 	
 	/**
@@ -250,6 +452,24 @@ public class Player {
 	 * null} si aucune carte n'a été prise dans la réserve.
 	 */
 	public Card gain(String cardName) {
+		
+	        /**Parcours des listes de la réserve de this.game**/
+			
+			for (Card c: this.game.availableSupplyCards()){
+				
+				if(c.getName()==cardName){                   /**Vérification de la présence de la carte**/
+					
+					this.gain(this.game.availableSupplyCards().remove(c.getName()));          /**Suppression de la réserve du jeu et gain de la carte**/
+					return c;
+					
+				}
+				
+			}
+			
+		
+		
+		return null;
+		
 	}
 	
 	/**
@@ -267,7 +487,41 @@ public class Player {
 	 * lieu
 	 */
 	public Card buyCard(String cardName) {
-	}
+		
+			
+	         /**Parcours des listes la réserve de this.game**/
+			
+			for (Card c: this.game.availableSupplyCards()){
+				
+				if(c.getName()==cardName){                   /**Vérification de la présence de la carte**/
+					
+					if(this.money >= c.getCost() && this.buys!=0){ /**Vérif. possibilité d'achat**/
+
+						this.gain(c.getName());
+						this.money-=c.getCost();
+					    this.buys-=1;
+						
+						return c;
+						
+					}
+					
+					return null;
+						
+						
+						
+						
+					}
+					
+				}
+				
+			
+			
+			return null;
+			
+		}
+		
+		
+	
 	
 	/**
 	 * Attend une entrée de la part du joueur (au clavier) et renvoie le choix
@@ -318,7 +572,6 @@ public class Player {
 			// Un seul choix possible (renvoyer cet unique élément)
 			return choiceSet.iterator().next();
 		} else {
-			Scanner sc = new Scanner(System.in);
 			String input;
 			// Lit l'entrée de l'utilisateur jusqu'à obtenir un choix valide
 			while (true) {
@@ -333,7 +586,7 @@ public class Player {
 				System.out.println(">>> " + instruction);
 				System.out.print("> ");
 				// lit l'entrée de l'utilisateur au clavier
-				input = sc.nextLine();
+				input = this.game.readLine();
 				if (choiceSet.contains(input) || (canPass && input.equals(""))){
 					// si une réponse valide est obtenue, elle est renvoyée
 					return input;
@@ -391,6 +644,9 @@ public class Player {
 	 * Les compteurs d'actions et achats sont mis à 1
 	 */
 	public void startTurn() {
+		
+		this.actions=1;
+		this.buys=1;
 	}
 	
 	/**
@@ -401,6 +657,25 @@ public class Player {
 	 * - Le joueur pioche 5 cartes en main
 	 */
 	public void endTurn() {
+		
+		this.actions=0;
+		this.buys=0;
+		
+		for(Card c: this.hand){
+			
+			this.discard.add(this.hand.remove(c.getName()));
+			
+		}
+		
+		for(int i=0; i<5;i++){
+			
+			this.hand.add(this.draw.remove(0));
+			
+		}
+		
+		
+		
+		
 	}
 	
 	/**
@@ -431,5 +706,91 @@ public class Player {
 	 * du joueur
 	 */
 	public void playTurn() {
+		
+		this.startTurn(); /**1*/
+		
+		boolean pass = false; /**Détermine si passage à l'étape suivante sans jouer de carte*/
+		while(this.actions !=0 && !pass){   /**2*/
+			
+			CardList choices = new CardList();
+			for (Card c: this.hand) {
+				if (c.getTypes().contains(CardType.Action)) {
+				choices.add(c);
+				}
+			}
+			
+			String input = this.chooseCard("Choose an Action card.", choices, true);
+			
+			if (input==""){
+				
+				pass=true;
+				
+			}else{
+				
+				this.playCard(input);
+				this.actions-=1;
+				
+			}
+			
+		}
+		
+		
+		System.out.println("Playing all your Treasure cards...");
+		for(Card c: this.hand){  /**3*/
+			
+			if(c.getTypes().contains(CardType.Treasure)){
+				
+				this.playCard(c.getName());
+				
+			}
+			
+		}
+		
+		pass=false;					/**4*/
+		while(this.buys !=0 && !pass){
+			
+			CardList choices = new CardList();
+			
+			for (Card c: this.game.availableSupplyCards()){
+				
+				choices.add(c);
+				
+			}
+			
+			String input = this.chooseCard("Choose a card to buy.", choices, true);
+			
+			if (input==""){
+				
+				pass=true;
+				
+			}else{
+					
+				Card buy=this.buyCard(input);
+				
+				if (buy!=null){
+					
+					System.out.println("Card " + input + " successfuly bought.");
+					
+					
+				}else{
+					
+							System.out.println("Impossible to buy this card");
+					
+				}
+			
+			
+			}
+			
+			
+		}
+		
+		this.endTurn(); /**5*/
+
+		
+		
+		
+		
+		
+	
 	}
 }

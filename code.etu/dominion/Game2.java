@@ -48,6 +48,7 @@ public class Game {
 	 * - 8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province 	 * - 10 * (n-1) Curse où n est le nombre de joueurs dans la partie
 	 */
 	public Game(String[] playerNames, List<CardList> kingdomStacks) {
+<<<<<<< HEAD:code.etu/dominion/Game2.java
 		Copper cartecopper = new Copper();
 		CardList listeCopper = new CardList();
 		for (int i = 0; i<60; i++) {
@@ -79,6 +80,95 @@ public class Game {
 		for (int i = 0; i<kingdomStacks.size(); i++) {
 			this.supplyStacks.add(kingdomStacks.get(i));
 		}
+=======
+		
+		
+		this.scanner = new Scanner (System.in);
+		this.players=new Player[playerNames.length]; //Déclaration du tableau de joueurs//
+		
+		for(int i=0; i<playerNames.length;i++){       
+		
+			Player p = new Player(playerNames[i],this);   /**Création des joueurs*/
+			this.players[i]=p; //Remplissage du tableau//
+		
+		}
+		
+		for (CardList cl : kingdomStacks){
+			
+			this.supplyStacks.add(cl);  //Ajout à la réserve du jeu des piles passées en paramètre//
+	
+		}
+		
+		
+		CardList treasures = new CardList();   /**Liste de cartes Trésor*/	
+		
+		for(int i=0; i<60; i++){   //Création des 60 cartes copper et ajout à la liste //
+			Copper c= new Copper();
+			treasures.add(c);
+		}
+	
+
+		for(int i=0; i<40; i++){ //Création des 40 silver et ajout à la liste//
+			Silver s=new Silver();
+			treasures.add(s);
+		}
+
+		
+		CardList golds=new CardList(); //Liste des cartes gold//
+		for(int i=0; i<30; i++){ //Creation de 30 gold//
+			Gold g= new Gold();
+			treasures.add(g);
+		}
+		
+		treasures.shuffle(); //Mélange des cartes//
+		this.supplyStacks.add(treasures); //Ajout de la liste treasures à la réserve//
+		
+		
+		CardList victory=new CardList(); //Liste des cartes victoire//
+		if(playerNames.length==2){
+			
+			for(int i=0; i<8; i++){
+				
+				Estate e=new Estate();
+				Duchy d=new Duchy();
+				Province p=new Province();
+				
+				victory.add(e);
+				victory.add(d);		
+				victory.add(p);
+				
+			}
+		
+		}else{
+			
+				for(int i=0; i<12; i++){
+				
+				Estate e=new Estate();
+				Duchy d=new Duchy();
+				Province p=new Province();
+				
+				victory.add(e);
+				victory.add(d);		
+				victory.add(p);
+				
+			}
+			
+		}
+		
+		this.supplyStacks.add(victory);
+		
+		CardList curse=new CardList(); //Liste des cartes Malédiction//
+		for(int i=0; i<(10*(playerNames.length-1));i++){
+			
+			Curse c=new Curse();
+			curse.add(c);
+			
+		}
+		
+		this.supplyStacks.add(curse);
+		
+		
+>>>>>>> cac409c7ac7246c9b677d338cb8fc168c96937f6:code.etu/dominion/Game.java
 		this.trashedCards = new CardList();
 		this.currentPlayerIndex = 0;
 	}
@@ -106,11 +196,22 @@ public class Game {
 	 * joueurs, ou -1 si le joueur n'est pas dans le tableau.
 	 */
 	private int indexOfPlayer(Player p) {
+<<<<<<< HEAD:code.etu/dominion/Game2.java
 		for (int i = 0; i<this.players.length; i++) {
 			if(this.players[i].getName().equals(p.getName())) {
 				return i;
 			}
 		}
+=======
+
+		for (int i = 0; i<this.numberOfPlayers(); i++) {
+			if(this.players[i] == p) {
+				return i;
+			}
+			
+		}
+		
+>>>>>>> cac409c7ac7246c9b677d338cb8fc168c96937f6:code.etu/dominion/Game.java
 		return -1;
 	}
 	
@@ -127,6 +228,7 @@ public class Game {
 	 * premier).
 	 */
 	public List<Player> otherPlayers(Player p) {
+<<<<<<< HEAD:code.etu/dominion/Game2.java
 		ArrayList<Player> classplayer = new ArrayList<Player>();
 		int j = this.indexOfPlayer(p);
 		for (int i = j; i<this.players.length; i++) {
@@ -136,6 +238,22 @@ public class Game {
 			classplayer.add(this.players[k]);
 		}
 		return classplayer;
+=======
+		
+		List<Player> list = new ArrayList<Player>();
+		
+		for (int i=0; i<this.numberOfPlayers(); i++){
+			
+			if(this.players[i]!=p){
+				list.add(players[i]);
+			}
+		
+		}
+		
+		return list;
+		
+		
+>>>>>>> cac409c7ac7246c9b677d338cb8fc168c96937f6:code.etu/dominion/Game.java
 	}
 	
 	/**
@@ -146,6 +264,17 @@ public class Game {
 	 * non-vide de la réserve (cartes royaume et cartes communes)
 	 */
 	public CardList availableSupplyCards() {
+		
+		CardList list = new CardList();
+		
+		for (CardList cl : this.supplyStacks){
+			
+			list.add(cl.get(0));
+			
+		}
+		
+		return list;
+		
 	}
 	
 	/**
@@ -183,6 +312,23 @@ public class Game {
 	 * ne correspond
 	 */
 	public Card getFromSupply(String cardName) {
+		
+		for(CardList cl : this.supplyStacks){
+			
+		    for(Card c: cl){
+				
+				if(c.getName()==cardName){
+					
+					return c;
+					
+				}
+				
+			}
+			
+		}
+		
+		return null;
+		
 	}
 	
 	/**
@@ -193,26 +339,74 @@ public class Game {
 	 * ne correspond au nom passé en argument
 	 */
 	public Card removeFromSupply(String cardName) {
+		
+			
+		for(CardList cl : this.supplyStacks){
+			
+		    for(Card c: cl){
+				
+				if(c.getName()==cardName){
+					
+					return cl.remove(c.getName());
+					
+				}
+				
+			}
+			
+		}
+		
+		return null;
+		
+		
 	}
 	
 	/**
 	 * Teste si la partie est terminée
 	 * 
 	 * @return un booléen indiquant si la partie est terminée, c'est-à-dire si
-	 * au moins l'unedes deux conditions de fin suivantes est vraie
+	 * au moins l'une des deux conditions de fin suivantes est vraie
 	 *  - 3 piles ou plus de la réserve sont vides
 	 *  - la pile de Provinces de la réserve est vide
 	 * (on suppose que toute partie contient une pile de Provinces, et donc si 
 	 * aucune des piles non-vides de la réserve n'est une pile de Provinces, 
 	 * c'est que la partie est terminée)
 	 */
+	 
+	 	
+	public boolean isFinished() {
+		
+		int cptPile=0; /**Compteur de piles vides*/
+		int cptPro=0; /**Compteur de cartes Province*/
+		
+		for (CardList cl : this.supplyStacks){   
+		
+			if(cl.size()==0){  /**Tester si les piles sont vides*/
+				cptPile+=1;
+			}
+			
+			for(Card c : cl){
+				
+				if (c.getName()=="Province"){
+					
+					cptPro+=1;
+					
+				}
+				
+			}
+			
+		}
+		
+		return (cptPile==3 || cptPro==0);
+		
+		
+		
+	}
+	
+	
 	public String readLine() {
 		return scanner.nextLine();
 	}
-	
-	public boolean isFinished() {
-	}
-	
+
 	/**
 	 * Boucle d'exécution d'une partie.
 	 * 
