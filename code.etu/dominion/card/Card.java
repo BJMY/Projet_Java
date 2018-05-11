@@ -52,7 +52,7 @@ public abstract class Card {
 	 */
 	public List<CardType> getTypes() {
 		
-		List<CardType> list=new List<CardType>();
+		List<CardType> list=new ArrayList<CardType>();
 		return list;
 		
 	}
@@ -63,7 +63,7 @@ public abstract class Card {
 	 */
 	public String toString() {
 		
-		return "Nom de la carte: " + this.name;
+		return "Nom de la carte: " + this.name + "/n";
 		
 	}
 	

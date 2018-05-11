@@ -8,10 +8,18 @@ import dominion.*;
 public abstract class VictoryCard extends Card {
 	
 	
+		public VictoryCard(String name, int cost) {
+		
+			super(name,cost);
+		
+		}
+
+	
+	
 		public List<CardType> getTypes() {
 		
 			List<CardType> list=super.getTypes();
-			list.add(Victory);
+			list.add(CardType.Victory);
 			return list;
 	}
 	

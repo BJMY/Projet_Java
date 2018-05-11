@@ -6,12 +6,18 @@ import dominion.*;
  * Les cartes Trésor
  */
 public abstract class TreasureCard extends Card {
-
+	
+	
+		public TreasureCard(String name, int cost) {
+		
+			super(name,cost);
+		
+		}
 	
 		public List<CardType> getTypes() {
 		
 			List<CardType> list=super.getTypes();
-			list.add(Treasure);
+			list.add(CardType.Treasure);
 			return list;
 	}
 	
@@ -21,11 +27,5 @@ public abstract class TreasureCard extends Card {
 		
 	}
 	
-
-	
-	
-	
-	
-	
-	
 }
+	
