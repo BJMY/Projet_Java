@@ -9,11 +9,17 @@ import dominion.*;
 public abstract class AttackCard extends ActionCard {
 	
 	
+		public AttackCard(String name, int cost) {
+		
+			super(name,cost);
+		
+		}
+	
 		public List<CardType> getTypes() {
 		
 			List<CardType> list=super.getTypes();
-			list.add(Action);
-			list.add(Attack);
+			list.add(CardType.Action);
+			list.add(CardType.Attack);
 			return list;
 	}
 	
