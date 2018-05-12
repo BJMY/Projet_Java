@@ -66,8 +66,33 @@ public class Player {
 	 */
 	public Player(String name, Game game) {
 		
+		this.hand=new CardList();
+		this.discard=new CardList();      //Initilisation piles//
+		this.draw=new CardList();
+		this.inPlay=new CardList();
+		
 		this.name=name;
 		this.game=game;
+		
+		for(int i=0; i<3;i++){
+			
+			this.discard.add(this.game.removeFromSupply("Estate"));
+			
+		}
+		
+		for(int i=0; i<7;i++){
+			
+			this.discard.add(this.game.removeFromSupply("Copper"));
+			
+		}
+		
+		for(int i=0; i<5;i++){
+			
+			this.hand.add(this.drawCard());
+			
+		}
+		
+	
 	}
 
 	/**
@@ -144,7 +169,14 @@ public class Player {
 	 */
 	public CardList cardsInHand() {
 		
-		return this.hand;
+		CardList list=new CardList();
+		
+		for(Card c : this.hand){
+			
+			list.add(c);
+			
+		}
+		return list;
 	}
 	
 	
@@ -263,11 +295,6 @@ public class Player {
 	 */
 	public Card drawCard() {
 		
-		if (this.draw.size()==0 && this.discard.size()==0){
-			return null;
-		}
-		
-		
 		
 		if (this.draw.size()==0){
 			
@@ -280,10 +307,16 @@ public class Player {
 				
 			}
 			
+			if(this.draw.size()!=0){
+			
+				return draw.remove(0);
+			}
+		}else{
+		
+				return draw.remove(0);
 		}
 		
-		return draw.remove(0);
-		
+		return null;
 		
 	}
 	
@@ -400,25 +433,14 @@ public class Player {
 	 * fait rien.
 	 */
 	public void playCard(String cardName) {
-		
-		if(this.hand.contains(cardName)){
-			
 
-			
-			for(Card c: this.hand){
-				
-				if(c.getName()==cardName){
-					c.play(this);
-					this.hand.remove(cardName);
-					this.inPlay.add(c);
+				for(Card c :this.hand){
 					
+					if(c.getName()==cardName){
+						this.playCard(c);
+					}
 					
 				}	
-			}
-		
-		
-		}
-		
 		
 	}
 	
