@@ -31,7 +31,10 @@ public class Game {
 	 * Liste des cartes qui ont été écartées (trash)
 	 */
 	private CardList trashedCards;
-
+	
+	/**
+	 * Scanner permettant de lire les entrées au clavier
+	 */
 	private Scanner scanner;
 	
 	/**
@@ -48,97 +51,6 @@ public class Game {
 	 * - 8 (si 2 joueurs) ou 12 (si 3 ou 4 joueurs) Estate, Duchy et Province 	 * - 10 * (n-1) Curse où n est le nombre de joueurs dans la partie
 	 */
 	public Game(String[] playerNames, List<CardList> kingdomStacks) {
-		
-		
-		this.scanner = new Scanner (System.in);
-		this.supplyStacks=new ArrayList<CardList>(); //Initialisation réserve//
-		this.trashedCards=new CardList(); //Initialisation trash//
-		this.players=new Player[playerNames.length]; //Déclaration du tableau de joueurs//
-		
-		for(int i=0; i<playerNames.length;i++){       
-		
-			Player p = new Player(playerNames[i],this);   /**Création des joueurs*/
-			this.players[i]=p; //Remplissage du tableau//
-		
-		}
-		
-		for (CardList cl : kingdomStacks){
-			
-			this.supplyStacks.add(cl);  //Ajout à la réserve du jeu des piles passées en paramètre//
-	
-		}
-		
-		
-		CardList treasures = new CardList();   /**Liste de cartes Trésor*/	
-		
-		for(int i=0; i<60; i++){   //Création des 60 cartes copper et ajout à la liste //
-			Copper c= new Copper();
-			treasures.add(c);
-		}
-	
-
-		for(int i=0; i<40; i++){ //Création des 40 silver et ajout à la liste//
-			Silver s=new Silver();
-			treasures.add(s);
-		}
-
-		
-		CardList golds=new CardList(); //Liste des cartes gold//
-		for(int i=0; i<30; i++){ //Creation de 30 gold//
-			Gold g= new Gold();
-			treasures.add(g);
-		}
-		
-		treasures.shuffle(); //Mélange des cartes//
-		this.supplyStacks.add(treasures); //Ajout de la liste treasures à la réserve//
-		
-		
-		CardList victory=new CardList(); //Liste des cartes victoire//
-		if(playerNames.length==2){
-			
-			for(int i=0; i<8; i++){
-				
-				Estate e=new Estate();
-				Duchy d=new Duchy();
-				Province p=new Province();
-				
-				victory.add(e);
-				victory.add(d);		
-				victory.add(p);
-				
-			}
-		
-		}else{
-			
-				for(int i=0; i<12; i++){
-				
-				Estate e=new Estate();
-				Duchy d=new Duchy();
-				Province p=new Province();
-				
-				victory.add(e);
-				victory.add(d);		
-				victory.add(p);
-				
-			}
-			
-		}
-		
-		this.supplyStacks.add(victory);
-		
-		CardList curse=new CardList(); //Liste des cartes Malédiction//
-		for(int i=0; i<(10*(playerNames.length-1));i++){
-			
-			Curse c=new Curse();
-			curse.add(c);
-			
-		}
-		
-		this.supplyStacks.add(curse);
-		
-		
-		this.trashedCards = new CardList();
-		this.currentPlayerIndex = 0;
 	}
 	
 	/**
@@ -149,14 +61,12 @@ public class Game {
 	 * @param index indice dans le tableau des joueurs du joueur à renvoyer
 	 */
 	public Player getPlayer(int index) {
-		return this.players[index];
 	}
 	
 	/**
 	 * Renvoie le nombre de joueurs participant à la partie
 	 */
 	public int numberOfPlayers() {
-		return this.players.length;
 	}
 	
 	/**
@@ -164,15 +74,6 @@ public class Game {
 	 * joueurs, ou -1 si le joueur n'est pas dans le tableau.
 	 */
 	private int indexOfPlayer(Player p) {
-
-		for (int i = 0; i<this.numberOfPlayers(); i++) {
-			if(this.players[i] == p) {
-				return i;
-			}
-			
-		}
-		
-		return -1;
 	}
 	
 	/**
@@ -188,26 +89,6 @@ public class Game {
 	 * premier).
 	 */
 	public List<Player> otherPlayers(Player p) {
-		
-		List<Player> list = new ArrayList<Player>();
-		int indice=0;
-	
-		
-		for(int i=this.indexOfPlayer(p)+1;i<players.length;i++){
-			
-			list.add(players[i]);
-			
-		}
-		
-		for(int i=0;i<this.indexOfPlayer(p);i++){
-			
-			list.add(players[i]);
-			
-		}
-		
-		return list;
-		
-		
 	}
 	
 	/**
@@ -218,17 +99,6 @@ public class Game {
 	 * non-vide de la réserve (cartes royaume et cartes communes)
 	 */
 	public CardList availableSupplyCards() {
-		
-		CardList list = new CardList();
-		
-		for (CardList cl : this.supplyStacks){
-			
-			list.add(cl.get(0));
-			
-		}
-		
-		return list;
-		
 	}
 	
 	/**
@@ -266,23 +136,6 @@ public class Game {
 	 * ne correspond
 	 */
 	public Card getFromSupply(String cardName) {
-		
-		for(CardList cl : this.supplyStacks){
-			
-		    for(Card c: cl){
-				
-				if(c.getName()==cardName){
-					
-					return c;
-					
-				}
-				
-			}
-			
-		}
-		
-		return null;
-		
 	}
 	
 	/**
@@ -293,74 +146,22 @@ public class Game {
 	 * ne correspond au nom passé en argument
 	 */
 	public Card removeFromSupply(String cardName) {
-		
-			
-		for(CardList cl : this.supplyStacks){
-			
-		    for(Card c: cl){
-				
-				if(c.getName()==cardName){
-					
-					return cl.remove(c.getName());
-					
-				}
-				
-			}
-			
-		}
-		
-		return null;
-		
-		
 	}
 	
 	/**
 	 * Teste si la partie est terminée
 	 * 
 	 * @return un booléen indiquant si la partie est terminée, c'est-à-dire si
-	 * au moins l'une des deux conditions de fin suivantes est vraie
+	 * au moins l'unedes deux conditions de fin suivantes est vraie
 	 *  - 3 piles ou plus de la réserve sont vides
 	 *  - la pile de Provinces de la réserve est vide
 	 * (on suppose que toute partie contient une pile de Provinces, et donc si 
 	 * aucune des piles non-vides de la réserve n'est une pile de Provinces, 
 	 * c'est que la partie est terminée)
 	 */
-	 
-	 	
 	public boolean isFinished() {
-		
-		int cptPile=0; /**Compteur de piles vides*/
-		int cptPro=0; /**Compteur de cartes Province*/
-		
-		for (CardList cl : this.supplyStacks){   
-		
-			if(cl.size()==0){  /**Tester si les piles sont vides*/
-				cptPile+=1;
-			}
-			
-			for(Card c : cl){
-				
-				if (c.getName()=="Province"){
-					
-					cptPro+=1;
-					
-				}
-				
-			}
-			
-		}
-		
-		return (cptPile==3 || cptPro==0);
-		
-		
-		
 	}
 	
-	
-	public String readLine() {
-		return scanner.nextLine();
-	}
-
 	/**
 	 * Boucle d'exécution d'une partie.
 	 * 
@@ -385,4 +186,19 @@ public class Game {
 			System.out.println(String.format("%s: %d Points.\n%s\n", p.getName(), p.victoryPoints(), p.totalCards().toString()));
 		}
 	}
+	
+	/**
+	 * Lit une ligne de l'entrée standard
+	 * 
+	 * C'est cette méthode qui doit être appelée à chaque fois qu'on veut lire
+	 * l'entrée clavier de l'utilisateur (par exemple dans Player.choose), ce
+	 * qui permet de n'avoir qu'un seul Scanner pour tout le programme
+	 * 
+	 * @return une chaîne de caractères correspondant à la ligne suivante de
+	 * l'entrée standard (sans le retour à la ligne final)
+	 */
+	public String readLine() {
+		return this.scanner.nextLine();
+	}
+	
 }
