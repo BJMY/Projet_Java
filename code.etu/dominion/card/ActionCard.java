@@ -26,6 +26,10 @@ public abstract class ActionCard extends Card {
 		
 	}
 	
+		public abstract void play(Player p);
+			
+		
+	
 	
 	
 }

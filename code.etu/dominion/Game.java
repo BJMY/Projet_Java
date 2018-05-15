@@ -200,7 +200,6 @@ public class Game {
 	public List<Player> otherPlayers(Player p) {
 		
 		List<Player> list = new ArrayList<Player>();
-		int indice=0;
 	
 		
 		for(int i=this.indexOfPlayer(p)+1;i<players.length;i++){

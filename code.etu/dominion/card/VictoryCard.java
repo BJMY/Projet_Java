@@ -29,4 +29,7 @@ public abstract class VictoryCard extends Card {
 		
 	}
 	
+	public abstract void play(Player p);
+	
+	
 }

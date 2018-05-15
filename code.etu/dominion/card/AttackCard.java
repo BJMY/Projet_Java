@@ -28,6 +28,7 @@ public abstract class AttackCard extends ActionCard {
 		return "Nom de la carte: " + super.getName() + "/n Types de la carte: Action Card & Attack Card" ;
 		
 	}
+		public abstract void play(Player p);
 	
 	
 }
