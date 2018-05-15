@@ -1,6 +1,6 @@
 package dominion;
-import dominion.card.*;
 import java.util.*;
+import dominion.card.*;
 
 /**
  * Un joueur de Dominion

@@ -26,7 +26,6 @@ public abstract class TreasureCard extends Card {
 		return "Nom de la carte: " + super.getName() + "/n Types de la carte: Treasure Card" ;
 		
 	}
-	public abstract void play(Player p);
 	
 }
 	

@@ -27,8 +27,6 @@ public abstract class CurseCard extends Card {
 		return "Nom de la carte: " + super.getName() + "/n Types de la carte: Curse Card" ;
 		
 	}
-	
-	public abstract void play(Player p);
 
 
 }
