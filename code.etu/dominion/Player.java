@@ -303,9 +303,13 @@ public class Player {
 			
 			for(Card c: this.discard){
 				
+				
+				
 				this.draw.add(c);
 				
 			}
+			
+			this.discard.clear();
 			
 			if(this.draw.size()!=0){
 			
@@ -419,6 +423,7 @@ public class Player {
 	
 		this.inPlay.add(this.hand.remove(c.getName()));
 		c.play(this);
+	
 		
 	}
 	
@@ -433,11 +438,15 @@ public class Player {
 	 * fait rien.
 	 */
 	public void playCard(String cardName) {
-
-				for(Card c :this.hand){
-					
-					if(c.getName()==cardName){
+		
+			
+				boolean trouve = false;
+				int i = 0;
+				while((i<hand.size()) && !trouve){
+					Card c = hand.get(i);
+					if(c.getName().equals(cardName)){
 						this.playCard(c);
+						trouve = true;
 					}
 					
 				}	
@@ -458,7 +467,7 @@ public class Player {
 		if(c!=null){
 			
 			
-		this.discard.add(c);
+		 this.discard.add(c);
 		
 		}
 		
@@ -481,7 +490,8 @@ public class Player {
 				
 				if(c.getName()==cardName){                   /**Vérification de la présence de la carte**/
 					
-					this.gain(this.game.availableSupplyCards().remove(c.getName()));          /**Suppression de la réserve du jeu et gain de la carte**/
+					
+					this.gain(this.game.removeFromSupply(c.getName()));          /**Suppression de la réserve du jeu et gain de la carte**/
 					return c;
 					
 				}
