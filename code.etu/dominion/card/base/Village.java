@@ -1,5 +1,4 @@
 package dominion.card.base;
-import java.util.*;
 import dominion.*;
 import dominion.card.*;
 
@@ -19,8 +18,8 @@ public class Village extends ActionCard {
 	
 	public void play(Player p){
 		
-		p.incrementActions(2);
 		p.addInHand(p.drawCard());
+		p.incrementActions(2);
 		
 	}
 	
