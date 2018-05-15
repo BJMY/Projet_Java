@@ -233,7 +233,12 @@ public class Game {
 		
 		for (CardList cl : this.supplyStacks){
 			
-			list.add(cl.get(0));
+			if(!cl.isEmpty()) {
+				list.add(cl.get(0));
+			}
+			else {
+				
+			}
 			
 		}
 		
@@ -310,13 +315,13 @@ public class Game {
 		    for(Card c: cl){
 				
 				if(c.getName()==cardName){
-					
+					this.trashedCards.add(c);
 					return cl.remove(c.getName());
 					
-				}
-				
 			}
-			
+		}
+		    
+				
 		}
 		
 		return null;
