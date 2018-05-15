@@ -17,9 +17,9 @@ public class Chapel extends ActionCard {
 		
 	}
 	
-	public void play(Player ){
+	public void play(Player p ){
 		
-			List<String> choices= new List<String>();
+			List<String> choices= new ArrayList<String>();
 		
 		for(Card c : p.cardsInHand()){
 			
@@ -34,7 +34,7 @@ public class Chapel extends ActionCard {
 			p.incrementActions(1);
 			String choix= p.choose("Saisissez le nom de cartes à jeter (vide pour passer)",choices,true);
 		
-			Card card;
+	
 		
 			if(choix==""){
 				
@@ -49,16 +49,15 @@ public class Chapel extends ActionCard {
 				
 					if(c.getName().equals(choix)){
 					
-						card=c;
-					
+						p.getGame().addToTrash(c);
+						p.removeFromHand(c);
 					}
 				
 				}
 			
 			}
 		
-			p.getGame().addToTrash(card);
-			p.removeFromHand(card);
+		
 			
 		}
 		

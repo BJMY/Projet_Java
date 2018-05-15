@@ -19,7 +19,7 @@ public class Feast extends ActionCard {
 	
 	public void play(Player p){
 		
-		p.getName().addToTrash(this);
+		p.getGame().addToTrash(this);
 		
 		boolean termine=false;
 	

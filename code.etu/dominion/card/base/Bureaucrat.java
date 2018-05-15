@@ -21,15 +21,15 @@ public class Bureaucrat extends AttackCard {
 	
 	public void play(Player p){
 		
-		Card silver=new Silver();
+
 		
-		p.addToDraw(silver);
+		p.addToDraw(p.getGame().removeFromSupply("Silver"));
 		
 		for(Player player : p.otherPlayers()){
 			
-			System.out.println(player.getName() + " possède une carte " + player.getVictoryCards(0).getName() )
-			player.addToDraw(player.getVictoryCards(0));
-			player.removeFromHand(player.getVictoryCards(0));
+			System.out.println(player.getName() + " possède une carte " + player.getVictoryCards().get(0).getName() );
+			player.addToDraw(player.getVictoryCards().get(0));
+			player.removeFromHand(player.getVictoryCards().get(0));
 			
 			
 		}

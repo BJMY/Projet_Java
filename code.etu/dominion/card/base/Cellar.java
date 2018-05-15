@@ -20,7 +20,7 @@ public class Cellar extends ActionCard {
 		
 		p.incrementActions(1);
 		
-		List<String> choices= new List<String>();
+		List<String> choices= new ArrayList<String>();
 		
 		for(Card c : p.cardsInHand()){
 			
@@ -35,7 +35,7 @@ public class Cellar extends ActionCard {
 			p.incrementActions(1);
 			String choix= p.choose("Saisissez le nom d'une carte à défausser (vide pour passer)",choices,true);
 		
-			Card card;
+			
 		
 			if(choix==""){
 				
@@ -44,13 +44,16 @@ public class Cellar extends ActionCard {
 			}
 		
 			boolean trouve=false;
+		
+		    
 			for (Card c : p.cardsInHand()){
 			
 				if(trouve!=true && termine!=true){
 				
 					if(c.getName().equals(choix)){
 					
-						card=c;
+					   p.addToDiscard(c);
+			           p.removeFromHand(c);
 					
 					}
 				
@@ -58,8 +61,7 @@ public class Cellar extends ActionCard {
 			
 			}
 		
-			p.addToDiscard(card);
-			p.removeFromHand(card);
+			
 			
 		}
 		
