@@ -10,4 +10,19 @@ import dominion.card.*;
  * +2 Pièces.
  */
 public class Woodcutter extends ActionCard {
+	
+	public Woodcutter (){
+		
+		super("Woodcutter",3);
+		
+		
+	}
+	
+	public void play(Player p){
+	
+		p.incrementActions(1);
+		p.incrementMoney(2);
+	
+	}
+	
 }
