@@ -24,7 +24,7 @@ public class Market extends ActionCard {
 		p.addInHand(p.drawCard());
 		p.incrementActions(1);
 		p.incrementBuys(1);
-		p.incrementMoney(2);
+		p.incrementMoney(1);
 		
 		
 	}
