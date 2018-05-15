@@ -11,4 +11,29 @@ import dominion.card.*;
  * Tous vos adversaires piochent 1 carte.
  */
 public class CouncilRoom extends ActionCard {
+	
+	public CouncilRoom(){
+	
+		super("CouncilRoom",5);
+		
+		
+	}
+	
+	public void play(Player p){
+		
+			p.addInHand(p.drawCard());
+			p.addInHand(p.drawCard());
+			p.addInHand(p.drawCard());
+			p.addInHand(p.drawCard());
+			p.incrementBuys(1);
+			
+			for(Player adv : p.otherPlayers()){
+				
+				adv.addInHand(p.drawCard());
+				
+			}
+		
+	}
+	
+	
 }
