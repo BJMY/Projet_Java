@@ -1,5 +1,4 @@
 package dominion.card.base;
-import java.util.*;
 import dominion.*;
 import dominion.card.*;
 
@@ -11,4 +10,12 @@ import dominion.card.*;
  */
 public class Moat extends ReactionCard {
 	
+	public Moat() {
+		super("Moat", 2);
+	}
+	
+	public void play(Player p) {
+		p.addInHand(p.drawCard());
+		p.addInHand(p.drawCard());
+	}
 }
