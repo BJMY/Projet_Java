@@ -339,7 +339,7 @@ public class Player {
 	
 	public void addToDiscard(Card c){
 		
-		this.add(c);
+		this.discard.add(c);
 		
 	}
 	
