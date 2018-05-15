@@ -187,6 +187,12 @@ public class Player {
 	
 	}
 	
+	public void removeFromHand(Card c){
+		
+		this.hand.remove(c);
+		
+	}
+	
 	/**
 	 * Renvoie une liste de toutes les cartes possédées par le joueur
 	 * (le deck complet c'est-à-dire toutes les cartes dans la main, la
@@ -323,6 +329,21 @@ public class Player {
 		return null;
 		
 	}
+	
+
+	public void addToDraw(Card c){
+
+			this.draw.add(c);			//Ajouter à la pioche
+		
+	}
+	
+	public void addToDiscard(Card c){
+		
+		this.add(c);
+		
+	}
+	
+	
 	
 	/**
 	 * Renvoie une représentation de l'état du joueur sous forme d'une chaîne
