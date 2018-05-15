@@ -3,7 +3,6 @@ package test;
 import dominion.Game;
 import dominion.Player;
 import dominion.card.CardList;
-
 import java.util.List;
 
 public class TestGame extends Test {
