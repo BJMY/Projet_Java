@@ -193,6 +193,10 @@ public class Player {
 		
 	}
 	
+	public void addToTrash(Card c){
+		
+	}
+	
 	/**
 	 * Renvoie une liste de toutes les cartes possédées par le joueur
 	 * (le deck complet c'est-à-dire toutes les cartes dans la main, la
