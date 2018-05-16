@@ -49,7 +49,7 @@ public class Chapel extends ActionCard {
 				
 					if(c.getName().equals(choix)){
 					
-						p.getGame().addToTrash(C);
+						p.getGame().addToTrash(c);
 						p.removeFromHand(c);
 					}
 				
