@@ -12,7 +12,7 @@ public class Mine extends ActionCard {
 	
 	public Mine(){
 		
-		super("Mine",5)
+		super("Mine",5);
 		
 	}
 	
