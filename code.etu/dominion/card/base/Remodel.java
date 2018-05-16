@@ -19,7 +19,7 @@ public class Remodel extends ActionCard {
 			choices.add(c.getName());
 		}
 		
-		String choix = p.choose("Saisissez le nom de la carte à ecarter de votre main", choices, false);
+		String choix = p.choose("Saisissez le nom de la carte a ecarter de votre main", choices, false);
 		for(Card c : p.cardsInHand()) {
 			if (c.getName() == choix) {
 				p.getGame().addToTrash(c);

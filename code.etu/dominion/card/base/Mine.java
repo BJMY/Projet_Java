@@ -29,7 +29,7 @@ public class Mine extends ActionCard {
 			
 			if(p.getGame().availableSupplyCards().get(0).getName()=="Treasure" && p.getGame().availableSupplyCards().get(0).getCost()<=p.getTreasureCards().get(0).getCost()){
 				
-				p.addInHand(availableSupplyCards().get(0))
+				p.addInHand(p.getGame().availableSupplyCards().get(0));
 				termine=true;
 				
 			}
