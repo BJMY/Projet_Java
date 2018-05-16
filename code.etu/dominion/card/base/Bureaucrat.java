@@ -22,7 +22,7 @@ public class Bureaucrat extends AttackCard {
 	public void play(Player p){
 		
 
-		
+		System.out.println("Entrée bureaucrate");
 		p.addToDraw(p.getGame().removeFromSupply("Silver"));
 		
 		for(Player player : p.otherPlayers()){
@@ -33,6 +33,8 @@ public class Bureaucrat extends AttackCard {
 			
 			
 		}
+		
+	System.out.println("sORTIE bureaucrate");
 		
 		
 	}
