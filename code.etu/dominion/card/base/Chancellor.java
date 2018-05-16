@@ -19,15 +19,10 @@ public class Chancellor extends ActionCard {
 		List<String> choices = Arrays.asList("y", "n");
 		p.incrementMoney(2);
 		String choix = p.choose("Veux-tu defausser ton deck immediatement ? (y/n)", choices, false);
-		if (choix == "y") {
+		if (choix.equals("y")) {
 			for(int i = 0; i<p.cardsInHand().size(); i++) {
-				p.addToDiscard(p.cardsInHand().remove(i));
-				p.cardsInHand().remove(i);
+				p.addToDiscard(p.cardsInHand().remove(0));
 			}
-			p.endTurn();
-		}
-		else {
-			p.endTurn();
 		}
 	}
 }
