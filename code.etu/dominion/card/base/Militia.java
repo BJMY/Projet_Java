@@ -18,6 +18,8 @@ public class Militia extends AttackCard {
 	}
 	
 	public void play(Player p){
+		
+		System.out.println("Entrée Milice");
 	
 		p.incrementMoney(2);
 		
@@ -29,13 +31,15 @@ public class Militia extends AttackCard {
 				
 				adv.addToDiscard(adv.cardsInHand().get(0));
 				adv.removeFromHand(adv.cardsInHand().get(0));
-				
+				cpt--;
 				
 			}
 			
 			
 			
 		}
+		
+		System.out.println("Sortie Milice");
 		
 	}
 	

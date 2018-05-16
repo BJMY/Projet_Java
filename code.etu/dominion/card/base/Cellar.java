@@ -37,7 +37,7 @@ public class Cellar extends ActionCard {
 		
 			
 		
-			if(choix==""){
+			if(choix.equals("")){
 				
 				termine=true;
 				

@@ -12,13 +12,16 @@ import dominion.card.*;
 public class Moneylender extends ActionCard {
 	
 	
+
 	public Moneylender(){
 		
-		super("MoneyLender",4);
+		super("Moneylender",4);
 		
 	}
 	
 	public void play(Player p){
+		
+		System.out.println("Entrée MoneyLender");
 		
 		Card c=p.cardsInHand().remove("Copper");
 		
@@ -27,7 +30,12 @@ public class Moneylender extends ActionCard {
 			p.incrementMoney(3);
 		}
 		
+		System.out.println("Sortie MoneyLender");
+		
 	}
+	
+	
+	
 	
 	
 	

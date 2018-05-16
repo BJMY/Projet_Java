@@ -19,6 +19,8 @@ public class Feast extends ActionCard {
 	
 	public void play(Player p){
 		
+		System.out.println("Entrée fEAST");
+		
 		p.getGame().addToTrash(this);
 		
 		boolean termine=false;
@@ -42,7 +44,7 @@ public class Feast extends ActionCard {
 		
 	
 		
-		
+		System.out.println("sORTIE fEAST");
 		
 	}
 	
