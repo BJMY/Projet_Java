@@ -62,6 +62,7 @@ public class Game {
 		
 		}
 		
+		
 		for (CardList cl : kingdomStacks){
 			
 			this.supplyStacks.add(cl);  //Ajout à la réserve du jeu des piles passées en paramètre//
@@ -325,6 +326,12 @@ public class Game {
 		
 		return null;
 		
+		
+	}
+	
+	public void addToTrash(Card c){
+		
+		this.trashedCards.add(c);
 		
 	}
 	
