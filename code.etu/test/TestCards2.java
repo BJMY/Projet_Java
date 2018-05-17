@@ -162,6 +162,7 @@ public class TestCards2 extends Test {
 	}
 
 	private static void testCouncilRoom(Test t) {
+		System.out.println("Entree test council");
 		GameProxy g = new GameProxy(IOGame.minimal());
 		PlayerProxy p0 = new PlayerProxy(g.getPlayer(0));
 		PlayerProxy p1 = new PlayerProxy(g.getPlayer(1));
@@ -178,9 +179,11 @@ public class TestCards2 extends Test {
 		t.check(hasCards(p1.hand, "Copper", "Copper", "Estate", "Estate"));
 		t.check(hasCards(p2.hand, "Estate"));
 		t.check(hasCards(p0.hand, "Copper"));
+		System.out.println("Sortie test council");
 	}
 
 	private static void testMine(Test t) {
+		System.out.println("Entree test mine");
 		GameProxy g = new GameProxy(IOGame.minimal());
 		PlayerProxy p0 = new PlayerProxy(g.getPlayer(0));
 		p0.clear();
@@ -191,6 +194,7 @@ public class TestCards2 extends Test {
 		p0.playCard("Mine");
 		t.check(hasCards(p0.hand, "Silver", "Silver"));
 		t.check(p0.discard.size() == 0);
+		System.out.println("Sortie test mine");
 	}
 
 

@@ -21,13 +21,13 @@ public class Mine extends ActionCard {
 	public void play(Player p){
 
 
-		
+		System.out.println("Entree playMine");
 		boolean termine=false;
-
+		System.out.println("entree boucle");
 		while(!termine){
 			
 			
-			if(p.getGame().availableSupplyCards().get(0).getName()=="Treasure" && p.getGame().availableSupplyCards().get(0).getCost()<=p.getTreasureCards().get(0).getCost()){
+			if(p.getGame().availableSupplyCards().get(0).getName().equals("Gold") || p.getGame().availableSupplyCards().get(0).getName().equals("Silver") || p.getGame().availableSupplyCards().get(0).getName().equals("Copper") && p.getGame().availableSupplyCards().get(0).getCost()<=p.getTreasureCards().get(0).getCost()){
 				
 				p.addInHand(p.getGame().availableSupplyCards().get(0));
 				termine=true;
@@ -37,10 +37,11 @@ public class Mine extends ActionCard {
 			
 			
 		}
+		System.out.println("Fin boucle");
 		
 		p.getGame().addToTrash(p.getTreasureCards().get(0));
 		p.removeFromHand(p.getTreasureCards().get(0));
-	
+		System.out.println("Sortie playMine");
 		
 	}
 }

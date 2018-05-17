@@ -14,13 +14,12 @@ public class CouncilRoom extends ActionCard {
 	
 	public CouncilRoom(){
 	
-		super("CouncilRoom",5);
+		super("Council Room",5);
 		
 		
 	}
 	
 	public void play(Player p){
-		System.out.println("Entrée CouncilRoom");
 		
 			p.addInHand(p.drawCard());
 			p.addInHand(p.drawCard());
@@ -33,7 +32,6 @@ public class CouncilRoom extends ActionCard {
 				adv.addInHand(p.drawCard());
 				
 			}
-		System.out.println("Sortie CouncilRoom");
 		
 	}
 	
