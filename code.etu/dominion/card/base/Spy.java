@@ -22,9 +22,14 @@ public class Spy extends AttackCard {
 	public void play(Player p){
 		p.addInHand(p.drawCard());
 		p.incrementActions(1);
-		p.cardsInHand().get(0).toString();
+		System.out.println(p.cardsInHand().get(0).toString());
+		List<String> choices = Arrays.asList("y", "n");
 		for(Player l : p.getGame().otherPlayers(p)) {
-			l.cardsInHand().get(0);
+			System.out.println(l.cardsInHand().get(0).toString());
+			String choix = p.choose("Veux-tu defausser la carte dévoilé? (y/n)", choices, true);
+			if (choix.equals("y")) {
+				
+			}
 		}
 	}
 	
