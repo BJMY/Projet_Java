@@ -28,7 +28,11 @@ public class Spy extends AttackCard {
 			System.out.println(l.cardsInHand().get(0).toString());
 			String choix = p.choose("Veux-tu defausser la carte dévoilé? (y/n)", choices, true);
 			if (choix.equals("y")) {
-				
+				l.addToTrash(l.cardsInHand().get(0));
+			}
+			else {
+				l.addToTrash(l.cardsInHand().get(0));
+				l.addInHand(l.drawCard());
 			}
 		}
 	}
