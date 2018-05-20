@@ -16,22 +16,28 @@ public class Workshop extends ActionCard {
 	
 	public void play(Player p) {
 		
-
-		boolean trouve = false;
-		int i = 0;
-
-		while (!trouve && i<p.getGame().availableSupplyCards().size()) {
-			Card c = p.getGame().availableSupplyCards().get(i);
+		List<String> choices=new ArrayList<String>();
+		
+		for(Card c : p.getGame().availableSupplyCards()){
 			
-			if (c.getCost() <= 4 && c.getCost()>0) {
-				
-				p.addToDiscard(c);
-				p.getGame().availableSupplyCards().remove(i);
-				trouve = true;
+			if(c.getCost()<=4){
+			choices.add(c.getName());
 			}
-			i++;
 		}
 		
+		String choix= p.choose("Saisissez le nom de la carte à gagner: ",choices,false);
+		
+		for(Card c : p.getGame().availableSupplyCards()){
+			
+			if(c.getName().equals(choix)){
+				
+				p.addToDiscard(c);
+				p.getGame().removeFromSupply(c.getName());
+				
+			}
+			
+		}
+				
 
 	}
 }

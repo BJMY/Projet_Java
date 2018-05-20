@@ -16,7 +16,7 @@ public class Remodel extends ActionCard {
 	public void play(Player p) {
 		
 		
-	System.out.println("Entrée Remodel");
+
 		List<String> choices = new ArrayList<String>();
 		for(Card c : p.cardsInHand()) {
 			choices.add(c.getName());
@@ -42,6 +42,5 @@ public class Remodel extends ActionCard {
 			}
 		}
 		
-			System.out.println("Sortie Remodel");
 	}
 }

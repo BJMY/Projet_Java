@@ -22,21 +22,28 @@ public class Feast extends ActionCard {
 		p.getGame().addToTrash(this);
 		p.removeFromHand(this);
 		
-	boolean trouve = false;
-		int i = 0;
-
-		while (!trouve && i<p.getGame().availableSupplyCards().size()) {
-			Card c = p.getGame().availableSupplyCards().get(i);
+		List<String> choices=new ArrayList<String>();
+		
+		for(Card c : p.getGame().availableSupplyCards()){
 			
-			if (c.getCost() == 5) {
-				
-				p.addToDiscard(c);
-				p.getGame().availableSupplyCards().remove(i);
-				trouve = true;
+			if(c.getCost()<=5){
+			choices.add(c.getName());
 			}
-			i++;
 		}
 		
+		String choix= p.choose("Saisissez le nom de la carte à gagner: ",choices,false);
+		
+		for(Card c : p.getGame().availableSupplyCards()){
+			
+			if(c.getName().equals(choix)){
+				
+				p.addToDiscard(c);
+				p.getGame().removeFromSupply(c.getName());
+				
+			}
+			
+		}
+				
 
 		
 	}
