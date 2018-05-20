@@ -126,6 +126,12 @@ public class Player {
 		
 	}
 	
+	public CardList getDraw(){
+	
+		return this.draw;
+		
+	}
+	
 	/**
 	 * Incrémente le nombre d'actions du joueur
 	 * 
@@ -187,15 +193,18 @@ public class Player {
 	
 	}
 	
+	public void addInPlay(Card c){
+		
+		this.inPlay.add(c);
+		
+	}
+	
 	public void removeFromHand(Card c){
 		
 		this.hand.remove(c);
 		
 	}
 	
-	public void addToTrash(Card c){
-		
-	}
 	
 	/**
 	 * Renvoie une liste de toutes les cartes possédées par le joueur
@@ -445,7 +454,9 @@ public class Player {
 	 */
 	public void playCard(Card c) {
 		
-	
+		
+		System.out.println(c.getName());
+
 		this.inPlay.add(this.hand.remove(c.getName()));
 		c.play(this);
 	
@@ -463,14 +474,26 @@ public class Player {
 	 * fait rien.
 	 */
 	public void playCard(String cardName) {
-		
+	
+				System.out.println(this.hand);
 			
 				boolean trouve = false;
 				int i = 0;
 				while((i<hand.size()) && !trouve){
+		
 					Card c = hand.get(i);
+					
+					System.out.println(c.getName());
+			
+			
+			
 					if(c.getName().equals(cardName)){
+						
+						
+						
 						this.playCard(c);
+						
+					
 						trouve = true;
 					}
 					
