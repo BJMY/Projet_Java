@@ -27,15 +27,19 @@ public class Bureaucrat extends AttackCard {
 		
 		for(Player player : p.otherPlayers()){
 			
-			System.out.println(player.getName() + " possède une carte " + player.getVictoryCards().get(0).getName() );
-			player.addToDraw(player.getVictoryCards().get(0));
-			player.removeFromHand(player.getVictoryCards().get(0));
+			if(player.getVictoryCards().size()!=0){
+				System.out.println(player.getName() + " possède une carte " + player.getVictoryCards().get(1).getName());	
+				player.addToDraw(player.getVictoryCards().get(1));
+				player.removeFromHand(player.getVictoryCards().get(1));
+			}else{
 			
+			
+			System.out.println("Main de " + player.getName() + " \n" + p.cardsInHand().toString());	
+				
+			}
 			
 		}
-		
-	System.out.println("sORTIE bureaucrate");
-		
+				
 		
 	}
 }

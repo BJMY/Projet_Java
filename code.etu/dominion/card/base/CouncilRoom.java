@@ -29,7 +29,7 @@ public class CouncilRoom extends ActionCard {
 			
 			for(Player adv : p.otherPlayers()){
 				
-				adv.addInHand(p.drawCard());
+				adv.addInHand(adv.drawCard());
 				
 			}
 		

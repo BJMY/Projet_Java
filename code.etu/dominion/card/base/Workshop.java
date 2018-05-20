@@ -15,18 +15,23 @@ public class Workshop extends ActionCard {
 	}
 	
 	public void play(Player p) {
+		
+
 		boolean trouve = false;
 		int i = 0;
-		System.out.println("Entrée boucle");
+
 		while (!trouve && i<p.getGame().availableSupplyCards().size()) {
 			Card c = p.getGame().availableSupplyCards().get(i);
-			if (c.getCost() <= 4) {
-				p.addInHand(c);
+			
+			if (c.getCost() <= 4 && c.getCost()>0) {
+				
+				p.addToDiscard(c);
+				p.getGame().availableSupplyCards().remove(i);
 				trouve = true;
 			}
 			i++;
 		}
 		
-		System.out.println("Sortie boucle");
+
 	}
 }

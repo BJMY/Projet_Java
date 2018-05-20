@@ -23,17 +23,19 @@ public class Remodel extends ActionCard {
 		}
 		
 		String choix = p.choose("Saisissez le nom de la carte a ecarter de votre main", choices, false);
+		boolean trouve = false;
 		for(Card c : p.cardsInHand()) {
-			if (c.getName() == choix) {
+			if (c.getName() == choix && !trouve) {
 				p.getGame().addToTrash(c);
-				boolean trouve = false;
+				p.removeFromHand(c);
+
 				int i = 0;
 				while (!trouve && i<p.getGame().availableSupplyCards().size()) {
 					Card d = p.getGame().availableSupplyCards().get(i);
-					if (d.getCost() <= c.getCost() + 2) {
-						p.addInHand(d);
+					if (d.getCost() == c.getCost() + 2) {
+						p.addToDiscard(d);
 						trouve = true;
-						p.getGame().availableSupplyCards().remove(i);
+						p.getGame().removeFromSupply(d.getName());
 					}
 					i++;
 				}

@@ -19,32 +19,25 @@ public class Feast extends ActionCard {
 	
 	public void play(Player p){
 		
-		System.out.println("Entrée fEAST");
-		
 		p.getGame().addToTrash(this);
+		p.removeFromHand(this);
 		
-		boolean termine=false;
-	
-		while(termine!=true){
+	boolean trouve = false;
+		int i = 0;
+
+		while (!trouve && i<p.getGame().availableSupplyCards().size()) {
+			Card c = p.getGame().availableSupplyCards().get(i);
 			
-			for(Card c : p.getGame().availableSupplyCards()){
-			
-				if (c.getCost()<=5){
+			if (c.getCost() == 5) {
 				
-					p.gain(c.getName());
-					termine=true;
-				
-				}
-			
-			
-			
+				p.addToDiscard(c);
+				p.getGame().availableSupplyCards().remove(i);
+				trouve = true;
 			}
-		
+			i++;
 		}
 		
-	
-		
-		System.out.println("sORTIE fEAST");
+
 		
 	}
 	

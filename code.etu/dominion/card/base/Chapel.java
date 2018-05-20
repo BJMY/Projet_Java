@@ -19,7 +19,7 @@ public class Chapel extends ActionCard {
 	
 	public void play(Player p ){
 		
-			List<String> choices= new ArrayList<String>();
+		List<String> choices= new ArrayList<String>();
 		
 		for(Card c : p.cardsInHand()){
 			
@@ -28,34 +28,44 @@ public class Chapel extends ActionCard {
 		}
 		
 		boolean termine=false;
+		int cpt=0;
 		
-		while(termine==false){
+		while(termine==false && cpt<=4){
 			
-			p.incrementActions(1);
-			String choix= p.choose("Saisissez le nom de cartes à jeter (vide pour passer)",choices,true);
+
+
+			String choix= p.choose("Saisissez le nom d'une carte à défausser (vide pour passer)",choices,true);
 		
-	
+			
 		
-			if(choix==""){
+			if(choix.equals("")){
 				
 				termine=true;
 				
-			}
+			}else{
 		
 			boolean trouve=false;
+		    
 			for (Card c : p.cardsInHand()){
 			
-				if(trouve!=true && termine!=true){
+				if(!trouve){
 				
 					if(c.getName().equals(choix)){
 					
-						p.getGame().addToTrash(c);
-						p.removeFromHand(c);
+					   p.getGame().addToTrash(c);
+
+			           p.removeFromHand(c);
+			           trouve=true;
+					
 					}
 				
 				}
 			
 			}
+		
+			
+			
+		}
 		
 		
 			

@@ -21,16 +21,20 @@ public class Moneylender extends ActionCard {
 	
 	public void play(Player p){
 		
-		System.out.println("Entrée MoneyLender");
-		
-		Card c=p.cardsInHand().remove("Copper");
-		
-		if(c!=null){
-			p.getGame().addToTrash(c);
-			p.incrementMoney(3);
+		for(Card c : p.cardsInHand()){
+			
+			if(c.getName().equals("Copper")){
+				
+				p.getGame().addToTrash(c);
+				p.removeFromHand(c);
+				p.incrementMoney(3);
+				
+			}
+			
+			
 		}
 		
-		System.out.println("Sortie MoneyLender");
+		
 		
 	}
 	

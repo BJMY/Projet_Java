@@ -16,24 +16,21 @@ public class Chancellor extends ActionCard {
 	}
 	
 	public void play(Player p) {
-		List<String> choices = Arrays.asList("y", "n");
+		
 		p.incrementMoney(2);
+		
+		List<String> choices = Arrays.asList("y", "n");
 		String choix = p.choose("Veux-tu defausser ton deck immediatement ? (y/n)", choices, false);
+		
+		
 		if (choix.equals("y")) {
 
-			for(int i = 0; i<p.cardsInHand().size(); i++) {
-				p.addToDiscard(p.cardsInHand().remove(0));
+			while(p.getDraw().size()!=0) {
+				Card c=p.getDraw().get(0);
+				p.addToDiscard(p.getDraw().remove(c.getName()));
 			}
-			System.out.println("yes go boucle");
 		
-			for(int i = 0; i<p.cardsInHand().size(); i++) {
-				
-			
-				p.addToDiscard(p.cardsInHand().remove(0));
-				
-			}
-			System.out.println("fin boucle");
-			
+	
 		}
 		
 	}

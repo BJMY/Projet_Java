@@ -32,7 +32,7 @@ public class Cellar extends ActionCard {
 		
 		while(termine==false){
 			
-			p.incrementActions(1);
+
 			String choix= p.choose("Saisissez le nom d'une carte à défausser (vide pour passer)",choices,true);
 		
 			
@@ -41,24 +41,26 @@ public class Cellar extends ActionCard {
 				
 				termine=true;
 				
-			}
+			}else{
 		
-			boolean trouve=false;
-		
+				boolean trouve=false;
+				int i=0;
 		    
-			for (Card c : p.cardsInHand()){
-			
-				if(trouve!=true && termine!=true){
+				while(!trouve){
+				
+					Card c=p.cardsInHand().get(i);
 				
 					if(c.getName().equals(choix)){
 					
 					   p.addToDiscard(c);
 			           p.removeFromHand(c);
+			           p.addInHand(p.drawCard());
+			           trouve=true;
 					
 					}
-				
-				}
-			
+					
+					i++;
+		
 			}
 		
 			
@@ -67,6 +69,7 @@ public class Cellar extends ActionCard {
 		
 	
 		
-	}
+		}
 	
+	}
 }
