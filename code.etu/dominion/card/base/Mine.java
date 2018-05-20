@@ -19,29 +19,89 @@ public class Mine extends ActionCard {
 	
 
 	public void play(Player p){
-
-
-		System.out.println("Entree playMine");
-		boolean termine=false;
-		System.out.println("entree boucle");
-		while(!termine){
+		
+		if (p.getTreasureCards().size()!=0){
+		
+			List<String> choices= new ArrayList<String>();
 			
-			
-			if(p.getGame().availableSupplyCards().get(0).getName().equals("Gold") || p.getGame().availableSupplyCards().get(0).getName().equals("Silver") || p.getGame().availableSupplyCards().get(0).getName().equals("Copper") && p.getGame().availableSupplyCards().get(0).getCost()<=p.getTreasureCards().get(0).getCost()){
+			for(Card c : p.getTreasureCards()){
 				
-				p.addInHand(p.getGame().availableSupplyCards().get(0));
-				termine=true;
+				choices.add(c.getName());
 				
 			}
 			
+			String choix= p.choose("Saisissez le nom de la carte à écarter: ",choices,false);
 			
+			boolean trouve=false;
+			int i=0;
 			
+			while(!trouve){
+					
+					Card c=p.getTreasureCards().get(i);
+					if(c.getName().equals(choix)){
+						
+						int cost=c.getCost();
+				
+						i=0;
+						
+						
+			
+						List<String> choices2= new ArrayList<String>();
+						
+						for(Card d: p.getGame().availableSupplyCards()){
+							
+							
+							if(d.getName().equals("Copper") && d.getCost()==cost+3|| d.getName().equals("Silver") && d.getCost()==cost+3|| d.getName().equals("Gold") && d.getCost()==cost+3){
+								
+								choices2.add(d.getName());
+								
+							}
+							
+						}
+						
+						if(choices2.size()!=0){
+							
+									p.getGame().addToTrash(c);
+									p.removeFromHand(c);
+						
+						String choix2= p.choose("Saisissez le nom de la carte à gagner: ",choices2,false);
+						
+						
+						while(!trouve && i<p.getGame().availableSupplyCards().size()){
+							
+							Card d=p.getGame().availableSupplyCards().get(i);
+							
+							if(d.getName().equals(choix2)){
+									
+									p.addInHand(d);
+									p.getGame().removeFromSupply(d.getName());
+									trouve=true;
+							
+							}
+							
+							i++;
+						
+							
+						}
+						
+						
+						
+					}else{
+						
+						System.out.println("Pas de meilleur carte trésor à proposer, annulation de l'action");
+						
+						
+					}
+						
+					}
+					
+					i++;
+				
+				
+				
+			}
+		
 		}
-		System.out.println("Fin boucle");
-		
-		p.getGame().addToTrash(p.getTreasureCards().get(0));
-		p.removeFromHand(p.getTreasureCards().get(0));
-		System.out.println("Sortie playMine");
-		
+
 	}
 }
