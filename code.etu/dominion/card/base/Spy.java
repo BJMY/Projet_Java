@@ -34,12 +34,14 @@ public class Spy extends AttackCard {
 			if (choix.equals("y")) {
 				
 				l.getGame().addToTrash(l.cardsInHand().get(0));
+				l.cardsInHand().remove(0);
 				
 			}
 			
 			else {
 				
 				l.getGame().addToTrash(l.cardsInHand().get(0));
+				l.cardsInHand().remove(0);
 				l.addInHand(l.drawCard());
 				
 			}

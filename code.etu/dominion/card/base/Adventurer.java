@@ -19,6 +19,14 @@ public class Adventurer extends ActionCard {
 	
 	public void play(Player p){
 		
+		int cpt = 0;
+		while (!p.totalCards().isEmpty() || cpt != 2) {
+			if (p.totalCards().get(0).getName().equals("Gold") || p.totalCards().get(0).getName().equals("Silver") || p.totalCards().get(0).getName().equals("Copper")) {
+				p.addInHand(p.totalCards().get(0));
+				cpt++;
+			}
+			p.getGame().addToTrash(p.totalCards().get(0));
+		}
 	}
 	
 }
