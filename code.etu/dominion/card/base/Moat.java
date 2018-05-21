@@ -18,5 +18,10 @@ public class Moat extends ReactionCard {
 	public void play(Player p) {
 		p.addInHand(p.drawCard());
 		p.addInHand(p.drawCard());
+		for (Player l : p.otherPlayers()) {
+			if(l.playCard(l.getDraw().get(0).getTypes().contains(CardType.Treasure)) {
+				
+			}
+		}
 	}
 }
