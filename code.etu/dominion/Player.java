@@ -66,6 +66,7 @@ public class Player {
 	 */
 	public Player(String name, Game game) {
 		
+		
 		this.hand=new CardList();
 		this.discard=new CardList();      //Initilisation piles//
 		this.draw=new CardList();
@@ -74,10 +75,12 @@ public class Player {
 		this.name=name;
 		this.game=game;
 		
+
+		
 		for(int i=0; i<3;i++){
 			
 			this.discard.add(this.game.removeFromSupply("Estate"));
-			
+
 		}
 		
 		for(int i=0; i<7;i++){
@@ -85,6 +88,9 @@ public class Player {
 			this.discard.add(this.game.removeFromSupply("Copper"));
 			
 		}
+		
+			System.out.println(this.discard);
+		
 		
 		for(int i=0; i<5;i++){
 			
@@ -384,16 +390,19 @@ public class Player {
 		
 		CardList list = new CardList();
 		
-		for(Card c: this.hand){
+		int i=0;
+		while(this.hand.size()!=0 && i<this.hand.size()){
 			
+			Card c=this.hand.get(i);
 			if(c.getTypes().contains(CardType.Treasure)){
-				
-				list.add(c);
-				
+			list.add(c);
 			}
+			i++;
+			
 			
 		}
 		
+
 		return list;
 		
 	}
@@ -403,18 +412,21 @@ public class Player {
 	 */
 	public CardList getActionCards() {
 		
-			CardList list = new CardList();
+				CardList list = new CardList();
 		
-		for(Card c: this.hand){
+		int i=0;
+		while(this.hand.size()!=0 && i<this.hand.size()){
 			
-			if(c.getTypes().contains(CardType.Action)){
-				
+			Card c=this.hand.get(i);
+				if(c.getTypes().contains(CardType.Action)){
 				list.add(c);
-				
 			}
+			i++;
+			
 			
 		}
 		
+
 		return list;
 		
 		
@@ -425,18 +437,21 @@ public class Player {
 	 */
 	public CardList getVictoryCards() {
 		
-		CardList list = new CardList();
+				CardList list = new CardList();
 		
-		for(Card c: this.hand){
+		int i=0;
+		while(this.hand.size()!=0 && i<this.hand.size()){
 			
+			Card c=this.hand.get(i);
 			if(c.getTypes().contains(CardType.Victory)){
-				
-				list.add(c);
-				
+			list.add(c);
 			}
+			i++;
+			
 			
 		}
 		
+
 		return list;
 		
 		
@@ -475,7 +490,7 @@ public class Player {
 	 */
 	public void playCard(String cardName) {
 	
-				System.out.println(this.hand);
+
 			
 				boolean trouve = false;
 				int i = 0;
@@ -489,13 +504,11 @@ public class Player {
 			
 					if(c.getName().equals(cardName)){
 						
-						
-						
 						this.playCard(c);
-						
-					
 						trouve = true;
 					}
+					
+					i++;
 					
 				}	
 		
@@ -573,7 +586,7 @@ public class Player {
 			
 			for (Card c: this.game.availableSupplyCards()){
 				
-				if(c.getName()==cardName){                   /**Vérification de la présence de la carte**/
+				if(c.getName().equals(cardName)){                   /**Vérification de la présence de la carte**/
 					
 					if(this.money >= c.getCost() && this.buys!=0){ /**Vérif. possibilité d'achat**/
 
@@ -670,6 +683,8 @@ public class Player {
 				if (choiceSet.contains(input) || (canPass && input.equals(""))){
 					// si une réponse valide est obtenue, elle est renvoyée
 					return input;
+				}else{
+					System.out.println("Votre choix est invalide, merci de taper à nouveau ...");
 				}
 			}
 		}
@@ -741,15 +756,24 @@ public class Player {
 		this.actions=0;
 		this.buys=0;
 		
-		for(Card c: this.hand){
+		//~ while(this.hand.size()!=0){
 			
+			//~ this.discard.add
+			
+			
+		//~ }
+		
+		for(Card c: this.cardsInHand()){
+			
+			if(c!=null){
 			this.discard.add(this.hand.remove(c.getName()));
-			
+			}
+		
 		}
 		
 		for(int i=0; i<5;i++){
 			
-			this.hand.add(this.draw.remove(0));
+			this.addInHand(this.drawCard());
 			
 		}
 		
@@ -786,17 +810,17 @@ public class Player {
 	 * du joueur
 	 */
 	public void playTurn() {
-		
+	
 		this.startTurn(); /**1*/
 		
 		boolean pass = false; /**Détermine si passage à l'étape suivante sans jouer de carte*/
-		while(this.actions !=0 && !pass){   /**2*/
+		while(this.actions !=0 && !pass && this.getActionCards().size()!=0){   /**2*/
 			
 			CardList choices = new CardList();
-			for (Card c: this.hand) {
-				if (c.getTypes().contains(CardType.Action)) {
+			
+			for (Card c: this.getActionCards()) {
+				
 				choices.add(c);
-				}
 			}
 			
 			String input = this.chooseCard("Choose an Action card.", choices, true);
@@ -806,23 +830,28 @@ public class Player {
 				pass=true;
 				
 			}else{
-				
 				this.playCard(input);
 				this.actions-=1;
-				
 			}
 			
 		}
-		
-		
+	
 		System.out.println("Playing all your Treasure cards...");
-		for(Card c: this.hand){  /**3*/
+		//~ for(Card c: this.hand){  /**3*/
 			
-			if(c.getTypes().contains(CardType.Treasure)){
+			//~ System.out.println("TAILLE HAND :" + this.hand.size());
+			
+			//~ if(c.getTypes().contains(CardType.Treasure)){
 				
-				this.playCard(c.getName());
+				//~ this.playCard(c.getName());
 				
-			}
+			//~ }
+			
+		//~ }javac
+		
+		while(this.getTreasureCards().size()!=0){
+			
+			this.playCard(this.getTreasureCards().get(0));
 			
 		}
 		
@@ -833,15 +862,18 @@ public class Player {
 			
 			for (Card c: this.game.availableSupplyCards()){
 				
+				if(c.getCost()<this.money){
 				choices.add(c);
+			}
 				
 			}
 			
 			String input = this.chooseCard("Choose a card to buy.", choices, true);
 			
-			if (input==""){
+			if (input.equals("")){
 				
 				pass=true;
+				this.endTurn();
 				
 			}else{
 					

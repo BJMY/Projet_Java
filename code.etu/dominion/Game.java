@@ -55,12 +55,12 @@ public class Game {
 		this.trashedCards=new CardList(); //Initialisation trash//
 		this.players=new Player[playerNames.length]; //Déclaration du tableau de joueurs//
 		
-		for(int i=0; i<playerNames.length;i++){       
+		//~ for(int i=0; i<playerNames.length;i++){       
 		
-			Player p = new Player(playerNames[i],this);   /**Création des joueurs*/
-			this.players[i]=p; //Remplissage du tableau//
+			//~ Player p = new Player(playerNames[i],this);   /**Création des joueurs*/
+			//~ this.players[i]=p; //Remplissage du tableau//
 		
-		}
+		//~ }
 		
 		
 		for (CardList cl : kingdomStacks){
@@ -105,29 +105,39 @@ public class Game {
 		if(playerNames.length==2){
 			
 			for(int i=0; i<8; i++){
-				
-				Estate e=new Estate();
+			
+			
 				Duchy d=new Duchy();
 				Province p=new Province();
 				
-				estates.add(e);
+			
 				duchys.add(d);		
 				provinces.add(p);
 				
+			}
+			
+			for(int i=0; i<8+3*playerNames.length; i++){
+					Estate e=new Estate();
+					estates.add(e);
 			}
 		
 		}else{
 			
 				for(int i=0; i<12; i++){
 				
-				Estate e=new Estate();
+			
 				Duchy d=new Duchy();
 				Province p=new Province();
 				
-				estates.add(e);
+			
 				duchys.add(d);		
 				provinces.add(p);
 				
+			}
+			
+			for(int i=0; i<12+3*playerNames.length; i++){
+					Estate e=new Estate();
+					estates.add(e);
 			}
 			
 		}
@@ -150,6 +160,16 @@ public class Game {
 		
 		this.trashedCards = new CardList();
 		this.currentPlayerIndex = 0;
+		
+		
+		for(int i=0; i<playerNames.length;i++){       
+		
+			Player p = new Player(playerNames[i],this);   /**Création des joueurs*/
+			this.players[i]=p; //Remplissage du tableau//
+		
+		}
+		
+			System.out.println("FIN CONSTUCTEUR GAME");
 	}
 	
 	/**
