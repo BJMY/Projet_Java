@@ -4,7 +4,7 @@ import dominion.*;
 import dominion.card.*;
 
 /**
- * Carte Sorcière (Witch)
+ * Carte SorciÃ¨re (Witch)
  * 
  * +2 Cartes.
  * Tous vos adversaires recoivent une carte Curse.
@@ -14,26 +14,30 @@ public class Witch extends AttackCard {
 		super("Witch", 5);
 	}
 	public void play(Player p) {
+		
 		p.addInHand(p.drawCard());
 		p.addInHand(p.drawCard());
 		
-		for(Player adv : p.otherPlayers()){
-			
-			for(Card c: p.getGame().availableSupplyCards()){
+		if(p.searchReactionCard() == false) {
+		
+			for(Player adv : p.otherPlayers()){
 				
-
-				if(c.getName().equals("Curse")){
-							
-					adv.addToDiscard(c);
-					p.getGame().removeFromSupply(c.getName());
-							
+				for(Card c: p.getGame().availableSupplyCards()){
+					
+	
+					if(c.getName().equals("Curse")){
+								
+						adv.addToDiscard(c);
+						p.getGame().removeFromSupply(c.getName());
+								
+					}
+					
 				}
 				
 			}
-			
 		}
-		
-		
 		
 	}
 }
+
+

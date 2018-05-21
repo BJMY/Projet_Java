@@ -23,39 +23,42 @@ public class Militia extends AttackCard {
 	
 		p.incrementMoney(2);
 		
-		for(Player adv : p.otherPlayers()){
-			
-			while(adv.cardsInHand().size()>3){
+		if(p.searchReactionCard() == false) {
+		
+			for(Player adv : p.otherPlayers()){
 				
-				List<String> choices=new ArrayList<String>();
-				
-				for(Card c : adv.cardsInHand()){
+				while(adv.cardsInHand().size()>3){
 					
-					choices.add(c.getName());
+					List<String> choices=new ArrayList<String>();
 					
-				}
-				
-				String choix= p.choose("Saisissez le nom de la carte à défausser: ",choices,false);
-				
-				boolean trouve=false;
-				for(Card c : adv.cardsInHand()){
-					
-					if(c.getName().equals(choix) && !trouve){
+					for(Card c : adv.cardsInHand()){
 						
-						adv.addToDiscard(c);
-						adv.removeFromHand(c);
-						trouve=true;
+						choices.add(c.getName());
 						
 					}
 					
+					String choix= p.choose("Saisissez le nom de la carte à défausser: ",choices,false);
+					
+					boolean trouve=false;
+					for(Card c : adv.cardsInHand()){
+						
+						if(c.getName().equals(choix) && !trouve){
+							
+							adv.addToDiscard(c);
+							adv.removeFromHand(c);
+							trouve=true;
+							
+						}
+						
+					}
+			
+					
+					
 				}
-		
+				
 				
 				
 			}
-			
-			
-			
 		}
 		
 	

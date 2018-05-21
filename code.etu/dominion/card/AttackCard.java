@@ -28,7 +28,5 @@ public abstract class AttackCard extends ActionCard {
 		return super.toString() + " (Action-Attack Card) \n";
 	}
 	
-
-	
 	
 }
