@@ -63,7 +63,7 @@ public abstract class Card {
 	 */
 	public String toString() {
 		
-		return "Nom de la carte: " + this.name + "/n";
+		return  this.name ;
 		
 	}
 	

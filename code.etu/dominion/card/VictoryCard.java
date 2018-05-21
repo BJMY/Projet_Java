@@ -25,7 +25,7 @@ public abstract class VictoryCard extends Card {
 	
 	public String toString() {
 		
-		return "Nom de la carte: " + super.getName() + "/n Types de la carte: Victory Card" ;
+			return super.toString() + " (Victory Card) \n";
 		
 	}
 	

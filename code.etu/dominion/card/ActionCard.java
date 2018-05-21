@@ -22,7 +22,7 @@ public abstract class ActionCard extends Card {
 	
 		public String toString() {
 		
-		return "Nom de la carte: " + super.getName() + "/n Types de la carte: Action Card" ;
+	return super.toString() + " (Action Card) \n";
 		
 	}
 	

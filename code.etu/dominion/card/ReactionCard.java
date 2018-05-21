@@ -25,7 +25,7 @@ public abstract class ReactionCard extends ActionCard {
 	
 		public String toString() {
 		
-		return "Nom de la carte: " + super.getName() + "/n Types de la carte: Action Card & Reaction Card" ;
+		return super.toString() + " (Reaction Card) \n";
 		
 	}
 	

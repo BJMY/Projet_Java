@@ -23,7 +23,7 @@ public abstract class TreasureCard extends Card {
 	
 	public String toString() {
 		
-		return "Nom de la carte: " + super.getName() + "/n Types de la carte: Treasure Card" ;
+		return super.toString() + " (Treasure Card) \n";
 		
 	}
 	
