@@ -458,20 +458,24 @@ public class Player {
 	}
 	
 	
-	public boolean searchReactionCard() {
-		boolean trouve = false;
+	public int searchReactionCard() {
+		int trouve = 0;
+		int j = 0;
+		while (j< this.getGame().numberOfPlayers()){
 			int i = 0;
+			Player p = this.getGame().getPlayer(j);
 			List<String> choices = Arrays.asList("y", "n");
-			while(i < this.cardsInHand().size() && trouve == false) {
-				if(this.cardsInHand().get(i).getName().equals("Moat")) {
-					String choix = this.choose("Voulez-vous utiliser la carte Moat ? (y/n)", choices, false);
+			while(i < p.cardsInHand().size() && trouve == 0) {
+				if(p.cardsInHand().get(i).getName().equals("Moat")) {
+					String choix = p.choose("Voulez-vous utiliser la carte Moat ? (y/n)", choices, false);
 					if(choix.equals("y")) {
-						trouve = true;
-						return trouve;
+						trouve += 1;
 					}
 				}
 				i++;
 			}
+			j++;
+		}
 		return trouve;
 	}
 	

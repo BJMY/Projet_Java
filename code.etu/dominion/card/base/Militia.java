@@ -23,7 +23,7 @@ public class Militia extends AttackCard {
 	
 		p.incrementMoney(2);
 		
-		if(p.searchReactionCard() == false) {
+		if(p.searchReactionCard() == 0) {
 		
 			for(Player adv : p.otherPlayers()){
 				

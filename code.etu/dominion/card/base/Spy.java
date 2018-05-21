@@ -24,7 +24,7 @@ public class Spy extends AttackCard {
 		p.addInHand(p.drawCard());
 		p.incrementActions(1);
 		List<String> choices = Arrays.asList("y", "n");
-		if(p.searchReactionCard() == false) {
+		if(p.searchReactionCard() == 0) {
 		
 			for(int i = 0; i < p.getGame().numberOfPlayers(); i++) { 
 					

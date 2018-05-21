@@ -25,7 +25,7 @@ public class Bureaucrat extends AttackCard {
 		
 		List<String> choices=new ArrayList<String>();
 		
-		if(p.searchReactionCard() == false) {
+		if(p.searchReactionCard() == 0) {
 		
 			for(Player adv: p.otherPlayers()){
 					

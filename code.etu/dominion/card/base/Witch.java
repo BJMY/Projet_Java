@@ -18,7 +18,7 @@ public class Witch extends AttackCard {
 		p.addInHand(p.drawCard());
 		p.addInHand(p.drawCard());
 		
-		if(p.searchReactionCard() == false) {
+		if(p.searchReactionCard() >= 0) {
 		
 			for(Player adv : p.otherPlayers()){
 				

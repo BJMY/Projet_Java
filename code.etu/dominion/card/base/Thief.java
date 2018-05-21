@@ -20,7 +20,7 @@ public class Thief extends AttackCard {
 		
 		List<String> cartesEcartees=new ArrayList<String>();
 		CardList cards=new CardList();
-		if(p.searchReactionCard() == false) {
+		if(p.searchReactionCard() == 0) {
 		
 			for(Player adv : p.otherPlayers()){
 				
