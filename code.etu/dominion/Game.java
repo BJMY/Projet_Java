@@ -413,11 +413,11 @@ public class Game {
 		while (!this.isFinished()) {
 				// joue le tour du joueur courant
 				this.players[this.currentPlayerIndex].playTurn();
-				// passe au joueur suivant				
+				// passe au joueur suivant	
+				this.currentPlayerIndex += 1;
 				if (this.currentPlayerIndex == this.players.length) {
 					this.currentPlayerIndex = 0;
 				}
-				this.currentPlayerIndex += 1;
 		}
 		// Affiche le score et les cartes de chaque joueur
 		for (int i = 0; i < this.players.length; i++) {
