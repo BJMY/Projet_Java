@@ -460,12 +460,11 @@ public class Player {
 	
 	public boolean searchReactionCard() {
 		boolean trouve = false;
-		for (Player p : this.getGame().otherPlayers(this)) {
 			int i = 0;
 			List<String> choices = Arrays.asList("y", "n");
-			while(i < p.cardsInHand().size() && trouve == false) {
-				if(p.cardsInHand().get(i).getName().equals("Moat")) {
-					String choix = p.choose("Voulez-vous utiliser la carte Moat ? (y/n)", choices, false);
+			while(i < this.cardsInHand().size() && trouve == false) {
+				if(this.cardsInHand().get(i).getName().equals("Moat")) {
+					String choix = this.choose("Voulez-vous utiliser la carte Moat ? (y/n)", choices, false);
 					if(choix.equals("y")) {
 						trouve = true;
 						return trouve;
@@ -473,7 +472,6 @@ public class Player {
 				}
 				i++;
 			}
-		}
 		return trouve;
 	}
 	
