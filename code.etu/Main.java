@@ -17,11 +17,125 @@ class Main {
 		List<CardList> kingdomStacks = new ArrayList<CardList>();
 		CardList stack = new CardList();
 		// Ajouter un bloc pour chaque carte royaume à utiliser
-		kingdomStacks.add(stack);
+
 		stack = new CardList();
 		for (int i = 0; i < 10; i++) {
 			stack.add(new Village());
 		}
+		kingdomStacks.add(stack);
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Cellar());
+		}
+		kingdomStacks.add(stack);
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Chapel());
+		}
+		kingdomStacks.add(stack);
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Moat());
+		}
+		kingdomStacks.add(stack);
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Chancellor());
+		}
+		kingdomStacks.add(stack);
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Village());
+		}
+		kingdomStacks.add(stack);
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Woodcutter());
+		}
+		kingdomStacks.add(stack);
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Workshop());
+		}
+		kingdomStacks.add(stack);
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Bureaucrat());
+		}
+		kingdomStacks.add(stack);
+		
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Feast());
+		}
+		kingdomStacks.add(stack);
+		
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Gardens());
+		}
+		kingdomStacks.add(stack);
+		
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Militia());
+		}
+		kingdomStacks.add(stack);
+		
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Moneylender());
+		}
+		kingdomStacks.add(stack);
+		
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Remodel());
+		}
+		kingdomStacks.add(stack);
+		
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Spy());
+		}
+		kingdomStacks.add(stack);
+		
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Thief());
+		}
+		kingdomStacks.add(stack);
+		
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Market());
+		}
+		kingdomStacks.add(stack);
+		
+		
+		stack = new CardList();
+		for (int i = 0; i < 10; i++) {
+			stack.add(new Witch());
+		}
+		kingdomStacks.add(stack);
+		
+		//Manque: Smithy,Adventurer,Mine,Library,Laboratory,Festival,CouncilRoom,ThroneRoom,
 		
 		// Instancie et exécute une partie
 		Game g = new Game(playerNames, kingdomStacks);
